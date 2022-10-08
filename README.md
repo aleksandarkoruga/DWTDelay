@@ -30,6 +30,10 @@ SuperCollider extensions directory: add the option `-DCMAKE_INSTALL_PREFIX=/path
 It's expected that the SuperCollider repo is cloned at `../supercollider` relative to this repo. If
 it's not: add the option `-DSC_PATH=/path/to/sc/source`.
 
+### Issues
+
+You may encounter linking issues for the WaveLib library, if you are on a dev system different than Windows please run a build of WaveLib and link it. Otherwise (you are on a Windows system) you might want to check your additional library directories paths and include directories.  
+
 ### Developing
 
 Use the command in `regenerate` to update CMakeLists.txt when you add or remove files from the
