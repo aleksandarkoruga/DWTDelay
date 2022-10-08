@@ -1,0 +1,26 @@
+class:: DWTDelay
+summary:: Discrete wavelet transform delay
+related:: TODO
+categories:: UGens>TODO
+
+description::
+
+Discrete wavelet transform delay
+
+
+classmethods::
+
+method::ar, kr
+
+argument::TODO
+
+argument::TODO
+
+
+examples::
+
+code::
+
+{ DWTDelay.ar(/* TODO */) }.play
+
+::
