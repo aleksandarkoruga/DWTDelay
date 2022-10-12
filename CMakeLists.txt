@@ -61,6 +61,31 @@ if (NOVA_SIMD)
 	include_directories(${SC_PATH}/external_libraries/nova-simd)
 endif()
 
+include_directories(${CMAKE_SOURCE_DIR}/plugins/DWTDelay/wavelib)
+include_directories(${CMAKE_SOURCE_DIR}/plugins/DWTDelay/wavelib/lib)
+include_directories(${CMAKE_SOURCE_DIR}/plugins/DWTDelay/wavelib/include)
+
+link_libraries(${CMAKE_SOURCE_DIR}/plugins/DWTDelay/wavelib/lib/wauxlib.lib)
+link_libraries(${CMAKE_SOURCE_DIR}/plugins/DWTDelay/wavelib/lib/wavelib.lib)
+
+# Create imported target wavelib::wavelib
+add_library(wavelib::wavelib STATIC IMPORTED)
+
+set_target_properties(wavelib::wavelib PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_SOURCE_DIR}/plugins/DWTDelay/wavelib/include"
+)
+
+# Create imported target wavelib::wauxlib
+add_library(wavelib::wauxlib STATIC IMPORTED)
+
+set_target_properties(wavelib::wauxlib PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_SOURCE_DIR}/plugins/DWTDelay/wavelib/include"
+)
+
+target_link_libraries(wavelib::wavelib)
+target_link_libraries(wavelib::wauxlib)
+
+
 ####################################################################################################
 # Begin target DWTDelay
 
