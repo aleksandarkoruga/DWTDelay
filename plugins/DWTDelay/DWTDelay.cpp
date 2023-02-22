@@ -9,7 +9,7 @@ static InterfaceTable* ft;
 namespace DWTDelay {
 
 
-    DWTDelay::DWTDelay() : m_idx({ 0,0 }), m_buf(NEXTPOWEROFTWO(sampleRate()), 0), m_levels(0, 0), m_nLevels(sc_min(numInputs() - 1, 32)) /*m_levelIdx(m_nLevels,0)*/, m_obj(wave_init("db4")), m_wt(wt_init(m_obj, "dwt", N_WL, sc_min(numInputs() - 1, 32))) {
+    DWTDelay::DWTDelay() : m_idx({ 0,0 }), m_buf(NEXTPOWEROFTWO(static_cast<int>(sampleRate())), 0), m_levels(0, 0), m_nLevels(sc_min(numInputs() - 1, 32)) /*m_levelIdx(m_nLevels,0)*/, m_obj(wave_init("db4")), m_wt(wt_init(m_obj, "dwt", N_WL, sc_min(numInputs() - 1, 32))) {
 
 
         setDWTExtension(m_wt, "sym");// Options are "per" and "sym". Symmetric is the default option
@@ -35,7 +35,7 @@ namespace DWTDelay {
         auto levelIdx = 0;
         for (auto nW = 0; nW < m_wt->lenlength - 1; ++nW)
         {
-            auto rdIdx = (static_cast<int>(m_idx.wIdx + m_buf.size() * 2 - static_cast<int>(sc_wrap(in(1.0f + (nW % m_nLevels))[inPos], 0.0f, 1.0f) * static_cast<float>(m_buf.size())))) & (m_buf.size() - 1);
+            auto rdIdx = (static_cast<int>(m_idx.wIdx + m_buf.size() * 2 - static_cast<int>(sc_wrap(in(1 + (nW % m_nLevels))[inPos], 0.0f, 1.0f) * static_cast<float>(m_buf.size())))) & (m_buf.size() - 1);
 
             if (rdIdx + N_WL > m_buf.size())
             {
