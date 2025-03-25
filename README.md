@@ -4,6 +4,12 @@ Author: Aleksandar Koruga
 
 Discrete wavelet transform delay
 
+If you're looking for a compiled external please check out https://github.com/aleksandarkoruga/public-extensions
+
+### Usage
+
+The ugen is made in such a way thet you need to give it an array as input, the first entry being the sinal you want to process and the subsequent entries the delay control pf each wavelet decomposition level. The number of decomposition levels is given by the number of entries in your array. DWTDelay.ar([signal,ctr1,ctr2,ctr3,...]) please note that all of the sognals must be audio rate.
+
 ### Requirements
 
 - CMake >= 3.5
